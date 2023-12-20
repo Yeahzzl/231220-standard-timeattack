@@ -12,6 +12,7 @@ import {
 } from "./styles";
 import { useMutation, useQueryClient } from "react-query";
 import { removeTodo, switchTodo } from "../../../api/todos";
+import { QUERY_KEYS } from "../../../query/keys.constant";
 
 /**
  * 컴포넌트 개요 : 메인 > TODOLIST > TODO. 할 일의 단위 컴포넌트
@@ -25,13 +26,13 @@ function Todo({ todo, isActive }) {
 
   const deleteMutation = useMutation(removeTodo, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries(QUERY_KEYS.TODO);
     },
   });
 
   const switchMutation = useMutation(switchTodo, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries(QUERY_KEYS.TODO);
     },
   });
 
